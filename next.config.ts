@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
-import withPWA from "next-pwa";
+import withPWA from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/:path*`,
       },
     ];
   },
@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
 export default withPWA({
   dest: "public",
   register: true,
-  skipWaiting: true,
+
   disable: process.env.NODE_ENV === "development",
-  buildExcludes: [/middleware-manifest\.json$/],
 })(nextConfig);
