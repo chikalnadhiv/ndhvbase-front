@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 import withPWA from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
-  // @ts-ignore
-  turbopack: {},
   async rewrites() {
     return [
       {
